@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
     data = request.cookies
 
-    with open("store.txt") as file:
+    with open("store.txt", "w") as file:
         for key in data:
             file.write(data[key] + "\n")
     
