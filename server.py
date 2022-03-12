@@ -14,7 +14,7 @@ def index():
     with open("store.txt") as file:
         results = file.read()
     
-    return "<head></head><body>" + escape(results) + "</body></html>"
+    return escape(results)
 
 if __name__ == "__main__":
     app.run()
