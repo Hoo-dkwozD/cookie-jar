@@ -17,6 +17,8 @@ class Cookie(db.Model):
     def __repr__(self):
         return f"{self.key}: {self.value}"
 
+db.create_all()
+
 @app.get("/")
 def index():
     data = request.cookies
@@ -32,5 +34,4 @@ def index():
     return escape(results)
 
 if __name__ == "__main__":
-    db.create_all()
     app.run()
