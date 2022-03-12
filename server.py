@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from markupsafe import escape
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/app.db'
 
 db = SQLAlchemy(app)
 
