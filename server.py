@@ -44,7 +44,10 @@ class Cookie(db.Model):
         }
 
 
-db.create_all() # Initialise database
+try: 
+    db.create_all() # Initialise database
+except: 
+    print("Database already initialized. ")
 
 ### Helper functions for data storage and retrieval
 def store_cookies(request, db: SQLAlchemy) -> None:
