@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form class="box">
+        <div class="field has-addons">
+            <div class="control is-expanded">
+                <input v-model="query" @keyup="updateSearch" type="text" class="input" id="query-str" placeholder="Search by key name">
+            </div>
+            <div class="control">
+                <a class="button is-primary" id="refresh-btn" @click="getCookies">
+                    Refresh
+                </a>
+            </div>
+        </div>
+    </form>
+    <div v-if="cookies.length !== 0" class="field is-grouped is-grouped-right">
+        <p v-cloak class="control">
+            <button @click="clearAll" class="button is-danger">
+                <span>Clear All</span>
+            </button>
+        </p>
+    </div>
+    <div v-else class="field is-grouped is-grouped-right">
+        <p v-cloak class="control">
+            <button class="button is-danger" disabled>
+                <span>Clear All</span>
+            </button>
+        </p>
+    </div>
+    <table v-cloak v-if="cookies.length !== 0" class="table is-bordered is-hoverable is-fullwidth mb-3" id="display-table">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+                <th>Timestamp</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr v-for="cookie in cookies">
+                <td v-html="cookie.key"></td>
+                <td v-html="cookie.value"></td>
+                <td v-html="cookie.timestamp"></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block js %}
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{{ url_for('static', filename = 'index.js') }}"></script>
+{% endblock %}
